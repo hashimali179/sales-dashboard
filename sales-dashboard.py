@@ -14,7 +14,7 @@ This is  a sales dashboard application!
 * **Data source:** [Kaggle](https://www.kaggle.com/code/seifhesham313/supermarket-sales-cleaning-eda-dashboard/input?select=supermarket_sales+-+Sheet1.csv).
 """)
 
-st.cache_data
+st.cache_resource
 def load_data():
     file_path = "supermarket_sales.csv"
     df = pd.read_csv(file_path)
