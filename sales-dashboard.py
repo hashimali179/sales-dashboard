@@ -41,32 +41,6 @@ if st.button("Show Table"):
     st.write(df_selected_sales)
 
 
-# # Rating by Product Line
-
-# #Groupping Product line by rating
-# groupped_product = df_selected_sales.groupby('Product line')['Rating'].mean().reset_index(drop=False)
-
-# #Rounding Rating column to 1 number
-# groupped_product_rating = groupped_product.round(1)
-
-# #Sorting by average rating
-# groupped_product_rating = groupped_product_rating.sort_values(by= 'Rating' , ascending =False)
-
-# #Chossing palette
-# palette = sns.color_palette('Greens_d')
-# palette.reverse()
-
-# #Make a horizontal bar graph for rating for each product line
-# fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(12, 8))
-# sns.barplot(y = 'Product line' , x = 'Rating' , data = groupped_product_rating, palette =palette)
-
-# #Showing Values
-# ax.bar_label(ax.containers[0])
-
-# #Setting a title
-# plt.title('Rating for Product Lines')
-
-# st.pyplot(fig)
 if st.button("Average Sales"):
     fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(6, 8))
     # plt.subplots_adjust(wspace=0.2, hspace=0.4)
@@ -266,5 +240,80 @@ if st.button("Distributions"):
 
     st.pyplot(fig)
 
+if st.button("Relationship With Product Type"):
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(6, 8))
+    # plt.subplots_adjust(wspace=0.4, hspace=0.8)
+    ax1 = axes[0][0]
+    ax2 = axes[0][1]
+    ax3 = axes[1][0]
+    ax4 = axes[1][1]
 
+    # Chart 1
+    #Making a multipie bar chart
+    sns.countplot(x = 'Product line' , hue= 'Customer type' , data =df_selected_sales , palette = 'coolwarm', ax = ax1)
+    #Setting legends settings
+    ax1.legend(loc="upper left" , prop = {'size' : 6})
+    #Data labels
+    ax1.bar_label(ax1.containers[0], fontsize = 6)
+    ax1.bar_label(ax1.containers[1], fontsize = 6)
+    #Set title
+    ax1.set_ylim(40, 110)
+    ax1.set_ylabel('Number of customers', fontsize=6)
+    ax1.set_xlabel('Product Type', fontsize=6)
+    ax1.set_xticklabels(ax1.get_xticklabels(), rotation = 45, fontsize=6)
+    ax1.set_yticklabels(ax1.get_yticklabels(), fontsize=6)
+    ax1.set_title('Customer count for all types of customers \n for each Product type',fontsize=8)
 
+    # Chart 2
+    #Making a multipie bar chart
+    sns.countplot(x = 'Product line' , hue= 'Gender' , data =df_selected_sales , palette = 'coolwarm', ax = ax2)
+    #Setting legends settings
+    ax2.legend(loc="upper left" , prop = {'size' : 6})
+    #Data labels
+    ax2.bar_label(ax2.containers[0], fontsize = 6)
+    ax2.bar_label(ax2.containers[1], fontsize = 6)
+    #Set title
+    ax2.set_ylim(40, 110)
+    ax2.set_ylabel('Number of customers', fontsize=6)
+    ax2.set_xlabel('Product Type', fontsize=6)
+    ax2.set_xticklabels(ax2.get_xticklabels(), rotation = 45, fontsize=6)
+    ax2.set_yticklabels(ax2.get_yticklabels(), fontsize=6)
+    ax2.set_title('Customer Count in each City \n for each Product type',fontsize=8)
+    
+    # Chart 3
+    #Making a multipie bar chart
+    sns.countplot(x = 'Product line' , hue= 'City' , data =df_selected_sales , palette = 'coolwarm', ax = ax3)
+    #Setting legends settings
+    ax3.legend(loc="upper left" , prop = {'size' : 6})
+    #Data labels
+    ax3.bar_label(ax3.containers[0], fontsize = 6)
+    ax3.bar_label(ax3.containers[1], fontsize = 6)
+    ax3.bar_label(ax3.containers[2], fontsize = 6)
+    #Set title
+    ax3.set_ylim(20, 80)
+    ax3.set_ylabel('Number of customers', fontsize=6)
+    ax3.set_xlabel('Product Type', fontsize=6)
+    ax3.set_xticklabels(ax3.get_xticklabels(), rotation = 45, fontsize=6)
+    ax3.set_yticklabels(ax3.get_yticklabels(), fontsize=6)
+    ax3.set_title('Customer Count in each City \n for each Product type',fontsize=8)
+    
+    
+    # Chart 4
+    #Making a multipie bar chart
+    sns.countplot(x = 'Product line' , hue= 'Branch' , data =df_selected_sales , palette = 'coolwarm', ax = ax4)
+    #Setting legends settings
+    ax4.legend(loc="upper left" , prop = {'size' : 6})
+    #Data labels
+    ax4.bar_label(ax4.containers[0], fontsize = 6)
+    ax4.bar_label(ax4.containers[1], fontsize = 6)
+    ax4.bar_label(ax4.containers[2], fontsize = 6)
+    #Set title
+    ax4.set_ylim(20, 80)
+    ax4.set_ylabel('Number of customers', fontsize=6)
+    ax4.set_xlabel('Product Type', fontsize=6)
+    ax4.set_xticklabels(ax4.get_xticklabels(), rotation = 45, fontsize=6)
+    ax4.set_yticklabels(ax4.get_yticklabels(), fontsize=6)
+    ax4.set_title('Customer Count in each Branch \n for each Product type',fontsize=8)
+    
+    plt.tight_layout()
+    st.pyplot(fig)
