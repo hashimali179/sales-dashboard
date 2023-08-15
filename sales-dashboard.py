@@ -8,6 +8,12 @@ import seaborn as sns
 
 st.title("Supermarket Sales Dashboard")
 
+st.markdown("""
+This is  a sales dashboard application!
+* **Python libraries:** numpy, pandas, streamlit, matplotlib, seaborn
+* **Data source:** [Kaggle](https://www.kaggle.com/code/seifhesham313/supermarket-sales-cleaning-eda-dashboard/input?select=supermarket_sales+-+Sheet1.csv).
+""")
+
 st.cache_data
 def load_data():
     file_path = "supermarket_sales.csv"
@@ -317,3 +323,5 @@ if st.button("Relationship With Product Type"):
     
     plt.tight_layout()
     st.pyplot(fig)
+
+st.write("More to come... stay tuned...")
