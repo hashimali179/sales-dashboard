@@ -37,7 +37,8 @@ df_selected_sales = data[(data["Branch"].isin(branch))
                         & (data["Product line"].isin(product))
                         & (data["Payment"].isin(payment))]
 
-st.write(df_selected_sales)
+if st.button("Show Table"):
+    st.write(df_selected_sales)
 
 
 # # Rating by Product Line
